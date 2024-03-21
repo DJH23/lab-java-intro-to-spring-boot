@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -37,5 +38,21 @@ public class PatientController {
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    // In PatientController.java
+    @GetMapping("/dob/{start}/{end}")
+    public List<Patient> getPatientsByDobRange(@PathVariable Date start, @PathVariable Date end) {
+        return patientService.getPatientsByDobRange(start, end);
+    }
+
+    @GetMapping("/admitting_department/{department}")
+    public List<Patient> getPatientsByAdmittingDoctorsDepartment(@PathVariable String department) {
+        return patientService.getPatientsByAdmittingDoctorsDepartment(department);
+    }
+
+    @GetMapping("/doctor_off")
+    public List<Patient> getPatientsWithDoctorOff() {
+        return patientService.getPatientsWithDoctorOff();
     }
 }

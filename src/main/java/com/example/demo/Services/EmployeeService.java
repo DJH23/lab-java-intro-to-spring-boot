@@ -28,4 +28,12 @@ public class EmployeeService {
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
     }
+
+    public List<Employee> getDoctorsByStatus(String status) {
+        return employeeRepository.findByStatus(status);
+    }
+
+    public List<Employee> getDoctorsByDepartment(String department) {
+        return employeeRepository.findByDepartment(department);
+    }
 }

@@ -37,4 +37,16 @@ public class EmployeeController {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    // In EmployeeController.java
+@GetMapping("/status/{status}")
+public List<Employee> getDoctorsByStatus(@PathVariable String status) {
+    return employeeService.getDoctorsByStatus(status);
+}
+
+@GetMapping("/department/{department}")
+public List<Employee> getDoctorsByDepartment(@PathVariable String department) {
+    return employeeService.getDoctorsByDepartment(department);
+}
+
 }
